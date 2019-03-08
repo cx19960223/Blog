@@ -1,67 +1,9 @@
-/* 超小屏幕（手机，小于 768px） */
-		/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的*/
-			/* 去除导航栏的圆角 */
-			.navbar-inverse{
-				-webkit-border-radius: 0;
-				-moz-border-radius: 0;
-				border-radius: 0;
-			}
-			.navbar-nav{
-				position: relative;
-				left: 5%;
-			}
-			.navbar-nav hr{
-				margin: 0;padding: 0;position: relative;left: 3%;width:80%;
-			}
-
-			.navbar-nav li{
-				margin-right: 20px;
-			}
-
-			.home_img{
-				width:12%;
-				position: relative;
-				left:73%;
-			}
-
-		/* 小屏幕（平板，大于等于 768px） */
-		@media (min-width: 768px) {
-			.navbar-nav{
-				position: relative;
-				left: -5%;
-			}
-
-			.home_img{
-				width:12%;
-				position: relative;
-				left:53%;
-			}
-		}
-
-		/* 中等屏幕（桌面显示器，大于等于 992px） */
-		@media (min-width: 992px) {
-			.navbar-nav{
-				position: relative;
-				left: 20%;
-			}
-
-			.home_img{
-				width:12%;
-				position: relative;
-				left:200%;
-			}
-		}
-
-		/* 大屏幕（大桌面显示器，大于等于 1200px） */
-		@media (min-width: 1200px) {
-			.navbar-nav{
-				position: relative;
-				left: 20%;
-			}
-
-			.home_img{
-				width:12%;
-				position: relative;
-				left:200%;
-			}
-		}
+/* 去除导航栏的圆角 */
+.navbar-inverse{
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+.navbar-nav hr{
+	margin: 0;padding: 0;position: relative;left: 3%;width:80%;
+}
