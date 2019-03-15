@@ -1,4 +1,4 @@
-<?php /*a:1:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1552636003;}*/ ?>
+<?php /*a:2:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1552642693;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552642620;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +12,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- bootstrap【end】 -->
 
-	<link rel="stylesheet" href="/all/css/article.css">
+	<link rel="stylesheet" href="/all/css/index.css">
 	<!-- css3动画库 -->
 	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/animate-3.1.0.min.css">
 	<!-- 图标字体库 -->
 	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
 	<script src="/all/js/index.js"></script>
 </head>
-<body id="my_body" background="/all/img/bg2.jpg" data-spy="scroll" data-target="#myScrollspy">
+<body id="my_body" background="/all/img/bg.jpg"  data-spy="scroll" data-target="#myScrollspy">
 	<!-- header[start] -->
 	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="container-fluid container"> 
@@ -71,6 +71,7 @@
 		</div>
 	</nav>
 	<!-- header[end] -->
+<link rel="stylesheet" href="/all/css/article.css">
 
 	<div class="container" style="background-color:white;">
         <ul class="breadcrumb" style="margin-top:10px;">
