@@ -14,4 +14,10 @@ class Index extends Controller
     {
         return $this->fetch('/article');
     }
+
+    // 发布文章
+    public function publish()
+    {
+        return $this->fetch('/publish');
+    }
 }
