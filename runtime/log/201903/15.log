@@ -1991,3 +1991,7 @@
 )
 [ info ] [ VIEW ] /usr/local/var/www/Blog/application/index/view/index.html [ array (
 ) ]
+---------------------------------------------------------------
+[2019-03-15T20:42:12+08:00] 127.0.0.1 GET blog/admin
+[运行时间：0.034000s] [吞吐率：29.41req/s] [内存消耗：1,082.17kb] [文件加载：49]
+[ info ] [ LANG ] E:\PHPWAMP_IN2\wwwroot\Blog\thinkphp\lang\zh-cn.php
