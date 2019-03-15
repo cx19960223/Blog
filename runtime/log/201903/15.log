@@ -1,0 +1,143 @@
+---------------------------------------------------------------
+[2019-03-15T16:57:47+08:00] 127.0.0.1 GET blog/public/
+[运行时间：0.022371s] [吞吐率：44.70req/s] [内存消耗：1,769.45kb] [文件加载：63]
+[ info ] [ LANG ] /usr/local/var/www/Blog/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://blog/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'dnt' => '1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'blog',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] /usr/local/var/www/Blog/application/index/view/index.html [ array (
+) ]
+---------------------------------------------------------------
+[2019-03-15T16:57:49+08:00] 127.0.0.1 GET blog/public/
+[运行时间：0.015353s] [吞吐率：65.13req/s] [内存消耗：1,622.83kb] [文件加载：61]
+[ info ] [ LANG ] /usr/local/var/www/Blog/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://blog/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'dnt' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'blog',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] /usr/local/var/www/Blog/application/index/view/index.html [ array (
+) ]
+---------------------------------------------------------------
+[2019-03-15T16:58:47+08:00] 127.0.0.1 GET blog/public/
+[运行时间：0.031441s] [吞吐率：31.81req/s] [内存消耗：1,622.86kb] [文件加载：61]
+[ info ] [ LANG ] /usr/local/var/www/Blog/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://blog/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'dnt' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'blog',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] /usr/local/var/www/Blog/application/index/view/index.html [ array (
+) ]
+---------------------------------------------------------------
+[2019-03-15T17:00:14+08:00] 127.0.0.1 GET blog/
+[运行时间：0.018079s] [吞吐率：55.31req/s] [内存消耗：1,622.77kb] [文件加载：61]
+[ info ] [ LANG ] /usr/local/var/www/Blog/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'dnt' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'purpose' => 'prefetch',
+  'connection' => 'keep-alive',
+  'host' => 'blog',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] /usr/local/var/www/Blog/application/index/view/index.html [ array (
+) ]
+---------------------------------------------------------------
+[2019-03-15T17:00:18+08:00] 127.0.0.1 GET blog/index.html
+[运行时间：0.015048s] [吞吐率：66.45req/s] [内存消耗：1,623.87kb] [文件加载：61]
+[ info ] [ LANG ] /usr/local/var/www/Blog/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'if-modified-since' => 'Thu, 14 Mar 2019 07:41:17 GMT',
+  'if-none-match' => '"5c8a059d-1292"',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://blog/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'dnt' => '1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'blog',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] /usr/local/var/www/Blog/application/index/view/index.html [ array (
+) ]
+---------------------------------------------------------------
+[2019-03-15T17:00:20+08:00] 127.0.0.1 GET blog/index/index/article.html
+[运行时间：0.017565s] [吞吐率：56.93req/s] [内存消耗：1,739.57kb] [文件加载：61]
+[ info ] [ LANG ] /usr/local/var/www/Blog/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://blog/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'dnt' => '1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'blog',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] /usr/local/var/www/Blog/application/index/view/article.html [ array (
+) ]
