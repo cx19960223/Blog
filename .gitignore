@@ -1,2 +1,8 @@
-runtime
+/.idea
+/.vscode
+/vendor
+*.log
 thinkphp
+runtime
+.env
+.DS_Store
