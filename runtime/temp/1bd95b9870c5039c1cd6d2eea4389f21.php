@@ -1,4 +1,4 @@
-<?php /*a:2:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1552642402;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552642620;}*/ ?>
+<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1552888705;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552888705;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552888705;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="<?php echo url('index/index/publish'); ?>">
 							<i class="fa fa-linux"></i>关于技术
 						</a>
 					</li>
@@ -66,11 +66,47 @@
 							<i class="fa fa-twitter"></i>业余爱好
 						</a>
 					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<i class="fa fa-pencil"></i>发布文章
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<!-- header[end] -->
+<!-- 发布文章登陆框 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    发布文章登陆
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name">账号:</label>
+                        <input type="text" class="form-control" id="name" placeholder="请输入账号">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">密码:</label>
+                        <input type="text" class="form-control" id="password" placeholder="请输入密码">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-success">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
 	<!-- content[start] -->
 	<div class="container">
 		<div class="row">
@@ -96,7 +132,7 @@
 						<h3>缩略图标签</h3>
 						<p>一些示例文本。一些示例文本。</p>
 						<p>
-							<a href="#" class="btn btn-info" role="button">
+							<a href="<?php echo url('index/index/article'); ?>" class="btn btn-info" role="button">
 								<i class="fa fa-soundcloud"></i>
 								原文
 							</a>
@@ -111,7 +147,7 @@
 						<h3>缩略图标签</h3>
 						<p>一些示例文本。一些示例文本。</p>
 						<p>
-							<a href="#" class="btn btn-info" role="button">
+							<a href="<?php echo url('index/index/article'); ?>" class="btn btn-info" role="button">
 								<i class="fa fa-soundcloud"></i>
 								原文
 							</a>
@@ -126,7 +162,7 @@
 						<h3>缩略图标签</h3>
 						<p>一些示例文本。一些示例文本。</p>
 						<p>
-							<a href="#" class="btn btn-info" role="button">
+							<a href="<?php echo url('index/index/article'); ?>" class="btn btn-info" role="button">
 								<i class="fa fa-soundcloud"></i>
 								原文
 							</a>
@@ -139,18 +175,21 @@
 	<!-- content[end] -->
 
 	<!-- page[start] -->
-	<div class="col-md-offset-2 col-sm-offset-2 col-xs-offset-1">
-		<ul class="pagination">
-			<li><a href="#">&laquo;</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">&raquo;</a></li>
-		</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+				<ul class="pagination">
+					<li><a href="#">&laquo;</a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">&raquo;</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<!-- page[end] -->
-	
 </body>
 </html>
