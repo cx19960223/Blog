@@ -1,4 +1,4 @@
-<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1552888705;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552888705;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552888705;}*/ ?>
+<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1552888705;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552901139;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552901979;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +18,9 @@
 	<!-- 图标字体库 -->
 	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
 	<script src="/all/js/index.js"></script>
+	<!-- layer -->
+	<script src="/all/layui/lay/modules/layer.js"></script>
+	<link rel="stylesheet" href="/all/layui/css/modules/layer/default/layer.css">
 </head>
 <body id="my_body" background="/all/img/bg.jpg"  data-spy="scroll" data-target="#myScrollspy">
 	<!-- header[start] -->
@@ -89,24 +92,65 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="name">账号:</label>
-                        <input type="text" class="form-control" id="name" placeholder="请输入账号">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">密码:</label>
-                        <input type="text" class="form-control" id="password" placeholder="请输入密码">
-                    </div>
-                </form>
+                <div class="form-group">
+                    <label for="name">账号:</label>
+                    <input type="text" class="form-control" name="name" placeholder="请输入账号">
+                </div>
+                <div class="form-group">
+                    <label for="name">密码:</label>
+                    <input type="text" class="form-control" name="password" placeholder="请输入密码">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-success">提交</button>
+                <button type="button" class="btn btn-success" onclick="login();">提交</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+// 登录
+function login(){
+    // layer.msg('sf', {icon: 2});
+    // return false;
+    var name = $("input[name='name']").val();
+    var password  = $("input[name='password']").val();
+    if(name == ''){
+        layer.msg('名称不能为空', {icon: 2});
+        return false;
+    }
+    if(password == ''){
+        layer.msg('密码不能为空', {icon: 2});
+        return false;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/index/index/login",
+        contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+        data: {
+            'name':name,
+            'password':password
+        },
+        dataType: "json",
+        success: function(data){
+            if(data.code == 200){
+                layer.msg(data.msg);
+            　　setTimeout(jumurl,2000);
+            }
+            layer.msg(data.msg);
+        }, error: function(data){
+            layer.msg("当前网络不稳定!请稍后再试", {icon: 2});
+        }
+    });
+}
+
+// 跳转至发布文章
+function jumurl(){
+　　window.location.href = "/index/index/publish";
+}
+</script>
 	<!-- content[start] -->
 	<div class="container">
 		<div class="row">
