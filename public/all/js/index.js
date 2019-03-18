@@ -9,3 +9,17 @@ function change_color(){
         document.getElementById("my_body").setAttribute("background","/all/img/bg2.jpg");
     }
 }
+
+//发布文章添加导航
+function addNav(){
+    var val = document.getElementById("add_nav").innerHTML;
+    if(val == '添加导航'){
+        document.getElementById("add_nav").innerHTML="关闭导航";
+        document.getElementById("nav_add").setAttribute("style","display:block;");
+        document.getElementById("nav_add").setAttribute("name","nav_add");
+    }else{
+        document.getElementById("add_nav").innerHTML="添加导航";
+        document.getElementById("nav_add").setAttribute("style","display:none;");
+        document.getElementById("nav_add").setAttribute("name","");
+    }
+}

@@ -1,4 +1,4 @@
-<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1552888705;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552888705;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552888705;}*/ ?>
+<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1552892726;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552888705;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552888705;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
