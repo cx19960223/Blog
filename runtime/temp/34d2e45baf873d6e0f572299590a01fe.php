@@ -1,4 +1,4 @@
-<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1552892726;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552888705;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552888705;}*/ ?>
+<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1552988077;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +18,9 @@
 	<!-- 图标字体库 -->
 	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
 	<script src="/all/js/index.js"></script>
+	<!-- layer -->
+	<script src="/all/layui/lay/modules/layer.js"></script>
+	<link rel="stylesheet" href="/all/layui/css/modules/layer/default/layer.css">
 </head>
 <body id="my_body" background="/all/img/bg.jpg"  data-spy="scroll" data-target="#myScrollspy">
 	<!-- header[start] -->
@@ -42,35 +45,44 @@
 						</a>
 					</li>
 					<li>
-						<a href="<?php echo url('index/index/publish'); ?>">
+						<a href="#technology">
 							<i class="fa fa-linux"></i>关于技术
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="#share">
 							<i class="fa fa-envira"></i>成长分享
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="#study">
 							<i class="fa fa-github-alt"></i>随笔心得
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="#think">
 							<i class="fa fa-github"></i>思考总结
 						</a>
 					</li>
 					<li>
-						<a href="#">
-							<i class="fa fa-twitter"></i>业余爱好
+						<a href="#life">
+							<i class="fa fa-twitter"></i>业余生活
 						</a>
 					</li>
-					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal">
-							<i class="fa fa-pencil"></i>发布文章
-						</a>
-					</li>
+					<?php if(session('id') == ''): ?>
+						<li>
+							<a href="#" data-toggle="modal" data-target="#myModal">
+								<i class="fa fa-user"></i>登录
+							</a>
+						</li>
+					<?php else: ?>
+						<li>
+							<a href="<?php echo url('index/index/publish'); ?>">
+								<i class="fa fa-pencil"></i>发布文章
+							</a>
+						</li>
+					<?php endif; ?>
+					
 				</ul>
 			</div>
 		</div>
@@ -89,24 +101,65 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-                        <label for="name">账号:</label>
-                        <input type="text" class="form-control" id="name" placeholder="请输入账号">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">密码:</label>
-                        <input type="text" class="form-control" id="password" placeholder="请输入密码">
-                    </div>
-                </form>
+                <div class="form-group">
+                    <label for="name">账号:</label>
+                    <input type="text" class="form-control" name="name" placeholder="请输入账号">
+                </div>
+                <div class="form-group">
+                    <label for="name">密码:</label>
+                    <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-success">提交</button>
+                <button type="button" class="btn btn-success" onclick="login();">提交</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+// 登录
+function login(){
+    var name = $("input[name='name']").val();
+    var password  = $("input[name='password']").val();
+    $('#myModal').modal('hide');//隐藏模态框
+    if(name == ''){
+        layer.msg('名称不能为空', {icon: 2});
+        return false;
+    }
+    if(password == ''){
+        layer.msg('密码不能为空', {icon: 2});
+        return false;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/index/index/login",
+        contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+        data: {
+            'name':name,
+            'password':password
+        },
+        dataType: "json",
+        success: function(data){
+            if(data.code == 200){
+                layer.msg(data.msg, {icon: 1});
+            　　setTimeout(jumurl,2000);
+            }else{
+                layer.msg(data.msg, {icon: 2});
+            }
+        }, error: function(data){
+            layer.msg("当前网络不稳定!请稍后再试", {icon: 2});
+        }
+    });
+}
+
+// 跳转至发布文章
+function jumurl(){
+　　window.location.href = "/index/index/publish";
+}
+</script>
 <link rel="stylesheet" href="/all/css/article.css">
 
 	<div class="container" style="background-color:white;">

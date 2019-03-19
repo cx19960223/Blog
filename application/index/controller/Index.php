@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use think\facade\Session;
 
 class Index extends Base
 {
@@ -18,9 +19,14 @@ class Index extends Base
     // 发布文章
     public function publish()
     {
-        return $this->fetch('/publish');
+        if(!empty( session('name') )){
+            return $this->fetch('/publish');
+        }else{
+            return $this->login();
+        }
     }
 
+    //发布文章 => 登录
     public function login()
     {
         if(!empty($_POST)){
@@ -43,7 +49,7 @@ class Index extends Base
                 return  ["code" => 404, "msg" => '账号不存在～'];
             }
         }else{
-            return  ["code" => 400, "msg" => '未接收到数据～'];
+            return "<script>alert('请先登录！');window.location.href='index';</script>";
         }
     }
 }
