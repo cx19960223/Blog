@@ -16,7 +16,7 @@ class Index extends Base
         return $this->fetch('/article');
     }
 
-    // 发布文章
+    // 跳转到发布文章
     public function publish()
     {
         if(!empty( session('name') )){
@@ -52,4 +52,14 @@ class Index extends Base
             return "<script>alert('请先登录！');window.location.href='index';</script>";
         }
     }
+
+    // 保存文章
+    public function saveArticle()
+    {
+        // $file = request()->file('cover');
+        // dump($file);
+        trim($_POST['nav_add']);
+        dump($_POST);
+    }
+
 }
