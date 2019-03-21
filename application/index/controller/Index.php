@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 use think\facade\Session;
+use think\Db;
 
 class Index extends Base
 {
@@ -56,10 +57,28 @@ class Index extends Base
     // 保存文章
     public function saveArticle()
     {
-        // $file = request()->file('cover');
-        // dump($file);
-        trim($_POST['nav_add']);
-        dump($_POST);
+        if(!empty($_FILES['cover']['name'])){
+            $file = request()->file('cover');// 获取表单上传封面
+            $cover_name = $this->uploadImg($file);//上传图片到本地，上传成功返回图片名称
+            $_POST['cover'] = $cover_name;
+        }else{
+            $_POST['cover'] = '';
+        }
+        $_POST['save_time'] = time();//保存时间
+        $_POST['publish_time'] = time();//当前是直接发布，所以发布时间 = 保存时间
+        $_POST['author'] = session('name');//获取发布者的名称
+        // 启动事务
+        Db::startTrans();
+        try {
+            $this->articleModel->saveArticle($_POST);
+            // 提交事务
+            Db::commit();
+            return "<script>window.location.href='index';</script>";
+        } catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+            return "<script>alert('事务回滚！');window.location.href='publish';</script>";
+        }
     }
 
 }
