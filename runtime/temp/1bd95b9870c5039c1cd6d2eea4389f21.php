@@ -1,4 +1,4 @@
-<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1552888705;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
+<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1553166011;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,11 +163,12 @@ function jumurl(){
 	<!-- content[start] -->
 	<div class="container">
 		<div class="row">
+			<?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?>
 			<div class="col-md-6">
 				<div class="thumbnail">
-					<img src="/all/img/1.jpg" alt="" class="animated slideInLeft">
+					<img src="<?php echo htmlentities($list['cover']); ?>" alt="" class="animated slideInRight">
 					<div class="caption">
-						<h3>缩略图标签</h3>
+						<h3><?php echo htmlentities($list['title']); ?></h3>
 						<p>一些示例文本。一些示例文本。</p>
 						<p>
 							<a href="<?php echo url('index/index/article'); ?>" class="btn btn-info" role="button">
@@ -178,51 +179,7 @@ function jumurl(){
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="thumbnail">
-					<img src="/all/img/2.jpg" alt="" class="animated slideInRight">
-					<div class="caption">
-						<h3>缩略图标签</h3>
-						<p>一些示例文本。一些示例文本。</p>
-						<p>
-							<a href="<?php echo url('index/index/article'); ?>" class="btn btn-info" role="button">
-								<i class="fa fa-soundcloud"></i>
-								原文
-							</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="thumbnail">
-					<img src="/all/img/3.jpg" alt="" class="animated rotateInDownLeft">
-					<div class="caption">
-						<h3>缩略图标签</h3>
-						<p>一些示例文本。一些示例文本。</p>
-						<p>
-							<a href="<?php echo url('index/index/article'); ?>" class="btn btn-info" role="button">
-								<i class="fa fa-soundcloud"></i>
-								原文
-							</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="thumbnail">
-					<img src="/all/img/4.jpg" alt="" class="animated rotateInDownRight">
-					<div class="caption">
-						<h3>缩略图标签</h3>
-						<p>一些示例文本。一些示例文本。</p>
-						<p>
-							<a href="<?php echo url('index/index/article'); ?>" class="btn btn-info" role="button">
-								<i class="fa fa-soundcloud"></i>
-								原文
-							</a>
-						</p>
-					</div>
-				</div>
-			</div>
+			<?php endforeach; endif; else: echo "" ;endif; ?>
 		</div>
 	</div>
 	<!-- content[end] -->
@@ -231,7 +188,8 @@ function jumurl(){
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
-				<ul class="pagination">
+				<?php echo $page; ?>
+				<!-- <ul class="pagination">
 					<li><a href="#">&laquo;</a></li>
 					<li><a href="#">1</a></li>
 					<li><a href="#">2</a></li>
@@ -239,7 +197,7 @@ function jumurl(){
 					<li><a href="#">4</a></li>
 					<li><a href="#">5</a></li>
 					<li><a href="#">&raquo;</a></li>
-				</ul>
+				</ul> -->
 			</div>
 		</div>
 	</div>

@@ -34,7 +34,7 @@ class Base extends Controller
         $info = $file->validate(['size'=>1048576,'ext'=>'jpg,png,gif,jpeg'])->move($this->img_src);
         if($info){
             // 成功上传后 返回图片路径
-            return $this->img_src.$info->getSaveName();
+            return '/'.$this->img_src.$info->getSaveName();
         }else{
             // 上传失败获取错误信息
             return $file->getError();

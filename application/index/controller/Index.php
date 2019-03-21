@@ -9,6 +9,13 @@ class Index extends Base
 
     public function index()
     {
+        $list = $this->articleModel->paginate(4);
+        // 获取分页显示
+        $page = $list->render();
+        // 模板变量赋值
+        $this->assign('list', $list);
+        $this->assign('page', $page);
+        // 渲染模板输出
         return $this->fetch('/index');
     }
 
