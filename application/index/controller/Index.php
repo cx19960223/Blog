@@ -7,6 +7,16 @@ class Index extends Base
 {
     public $userModel = '';
 
+    // animated css载入动画
+    public $animated = 
+    [
+        'bounce','flash','pulse','shake','swing','tada','wobble','bounceIn',//0-7
+        'bounceInDown','bounceInLeft','bounceInRight','bounceInUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft',//8-15
+        'fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','flip','flipInX','flipInY',//16-23
+        'lightSpeedIn','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight',//24-29
+        'slideInDown','slideInLeft','slideInRight','rollIn'//30-33
+    ];
+
     public function index()
     {
         $list = $this->articleModel->paginate(4);
@@ -15,12 +25,19 @@ class Index extends Base
         // 模板变量赋值
         $this->assign('list', $list);
         $this->assign('page', $page);
+        // 动画赋值
+        $this->assign('animated',$this->animated[rand(0,33)]);
         // 渲染模板输出
         return $this->fetch('/index');
     }
 
     public function article()
     {
+        $article = '';
+        if(!empty($_GET['id'])){
+            $article =  $this->articleModel->where('id',$_GET['id'])->find();
+        }
+        $this->assign('article',$article);
         return $this->fetch('/article');
     }
 
@@ -54,7 +71,7 @@ class Index extends Base
                     return  ["code" => 400, "msg" => '密码错误'];
                 }
             }else{
-                return  ["code" => 404, "msg" => '账号不存在～'];
+                return  ["code" => 404, "msg" => '账号不存在'];
             }
         }else{
             return "<script>alert('请先登录！');window.location.href='index';</script>";

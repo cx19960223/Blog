@@ -1,4 +1,4 @@
-<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1553166011;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
+<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1553175351;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,12 +166,12 @@ function jumurl(){
 			<?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?>
 			<div class="col-md-6">
 				<div class="thumbnail">
-					<img src="<?php echo htmlentities($list['cover']); ?>" alt="" class="animated slideInRight">
+					<img src="<?php echo htmlentities($list['cover']); ?>" alt="" class="animated <?php echo htmlentities($animated); ?>">
 					<div class="caption">
 						<h3><?php echo htmlentities($list['title']); ?></h3>
-						<p>一些示例文本。一些示例文本。</p>
+						<p><?php echo htmlentities($list['info']); ?></p>
 						<p>
-							<a href="<?php echo url('index/index/article'); ?>" class="btn btn-info" role="button">
+							<a href="/index/index/article?id=<?php echo htmlentities($list['id']); ?>" class="btn btn-info" role="button">
 								<i class="fa fa-soundcloud"></i>
 								原文
 							</a>
@@ -189,15 +189,6 @@ function jumurl(){
 		<div class="row">
 			<div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
 				<?php echo $page; ?>
-				<!-- <ul class="pagination">
-					<li><a href="#">&laquo;</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">&raquo;</a></li>
-				</ul> -->
 			</div>
 		</div>
 	</div>
