@@ -1,4 +1,4 @@
-<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1553497612;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1553497021;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
+<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1553497632;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1553497743;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +46,7 @@
 					</li>
 					<?php foreach($nav as $key=>$vo): ?> 
 					<li>
-						<a href="?type=<?php echo htmlentities($key); ?>">
+						<a href="/index/index/index?type=<?php echo htmlentities($key); ?>">
 							<i class="fa fa-<?php echo htmlentities($vo[1]); ?>"></i><?php echo htmlentities($vo[0]); ?>
 						</a>
 					</li>
@@ -154,7 +154,6 @@ function jumurl(){
                     <li class="active animated rollIn"><?php echo htmlentities($time['day']); ?></li>
                 </ul>
             <?php endif; ?>
-            
             <!-- 面包屑 [end] -->
             <div class="jumbotron">
                 <h1 class="animated lightSpeedIn"><?php echo htmlentities($article['title']); ?>&nbsp;<small><?php echo htmlentities($article['author']); ?></small></h1>

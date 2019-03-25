@@ -1,4 +1,4 @@
-<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1553496742;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1553497743;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
+<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1553498016;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1553497743;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,7 +147,9 @@ function jumurl(){
 			<?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?>
 			<div class="col-md-6">
 				<div class="thumbnail">
-					<img src="<?php echo htmlentities($list['cover']); ?>" alt="" class="animated <?php echo htmlentities($animated[rand(0,33)]); ?>">
+					<a href="/index/index/article?id=<?php echo htmlentities($list['id']); ?>">
+						<img src="<?php echo htmlentities($list['cover']); ?>" alt="" class="animated <?php echo htmlentities($animated[rand(0,33)]); ?>">
+					</a>
 					<div class="caption">
 						<h3><?php echo htmlentities($list['title']); ?></h3>
 						<p><?php echo htmlentities($list['info']); ?></p>
