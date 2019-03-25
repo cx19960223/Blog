@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label for="tag" class="col-sm-2 control-label">分类标签:</label>
                     <div class="col-sm-10">
-                        <select name="tag" id="" class="form-control">
+                        <select name="tag" id="tag" class="form-control">
                             <option value=""></option>
                             <option value="technology">关于技术</option>
                             <option value="share">成长分享</option>
@@ -39,29 +39,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="nav" class="col-sm-2 control-label">附加导航:</label>
-                    <div class="col-sm-10">
-                        <button type="button" class="btn btn-success" onclick="addNav();" id="add_nav">添加导航</button>
-                        <!-- 此处textarea默认不添加name值，当触发addNav事件时再添加name值 -->
-                        <textarea name="" id="nav_add" cols="90" rows="10" style="display: none;">
-                            <li class="active"><a href="#section-1">第一部分</a></li>
-                            <li><a href="#section-2">第二部分</a></li>
-                        </textarea>
-                        <p class="text-muted">注:&nbsp;&nbsp;请在textarea里面直接修改，注意href属性的值要和文章内容的id值对应</p>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label for="content" class="col-sm-2 control-label">文章内容:</label>
                     <div class="col-sm-10" name="content">
                         <!-- 加载编辑器的容器 -->
                         <script id="container" name="content" type="text/plain">
-                            <h2 id="section-1">第一部分</h2>
-                            <p class="thumbnail"><img src="" alt=""></p>
-                            <p>123</p>
+                            <h2>文本标题</h2>
+                            <p class="thumbnail">
+                                缩略图
+                            </p>
+                            <p>文本内容</p>
                             <hr>
-                            <h2 id="section-2">第二部分</h2>
-                            <p class="thumbnail"><img src="" alt=""></p>
-                            <p>123</p>
                         </script>
                         <!-- 配置文件 -->
                         <script type="text/javascript" src="/ueditor/utf8-php/ueditor.config.js"></script>
@@ -73,10 +60,20 @@
                         </script>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="status" class="col-sm-2 control-label">发布状态:</label>
+                    <div class="col-sm-10">
+                        <select name="status" class="form-control">
+                            <option value="0">不发布</option>
+                            <option value="1">发布</option>
+                        </select>
+                    </div>
+                </div>
                  
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" class="btn btn-success"  onclick="toVaild();">发布</button>
+                        <button type="button" class="btn btn-primary"  onclick="toVaild();">提交</button>
                     </div>
                 </div>
             </form>
@@ -86,25 +83,11 @@
 </html>
 
 <script>
-//发布文章添加导航
-function addNav(){
-    var val = document.getElementById("add_nav").innerHTML;
-    if(val == '添加导航'){
-        document.getElementById("add_nav").innerHTML="关闭导航";
-        document.getElementById("nav_add").setAttribute("style","display:block;");
-        document.getElementById("nav_add").setAttribute("name","nav");
-    }else{
-        document.getElementById("add_nav").innerHTML="添加导航";
-        document.getElementById("nav_add").setAttribute("style","display:none;");
-        document.getElementById("nav_add").setAttribute("name","");
-    }
-}
-
-// 发布
+// 提交
 function toVaild()
 {
     var title = $("input[name='title']").val();
-    var tag  = $("input[name='tag']").val();
+    var tag  = $("#tag option:selected").val();
     var info = $("input[name='info']").val();
     if(title == ''){
         layer.msg('文章标题不能为空', {icon: 2});
@@ -117,7 +100,7 @@ function toVaild()
     }
 
     if(tag == ''){
-        layer.msg('请选择分类', {icon: 2});
+        layer.msg('请选择分类标签', {icon: 2});
         return false;
     }
 

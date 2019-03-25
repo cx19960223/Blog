@@ -15,17 +15,8 @@
                 <h1 class="animated lightSpeedIn">{$article.title}&nbsp;<small>{$article.author}</small></h1>
             </div>
             <div class="row">
-                {if $article.nav != ''}
-                    <div class="visible-lg-block col-md-2" id="myScrollspy">
-                        <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
-                            {$article.nav}
-                        </ul>
-                    </div>
-                {else/}
-                {/if}
-                
                 <div class="col-xs-12 col-md-10">
-                    {$article.content}
+                    {:html_entity_decode($article['content'])}
                 </div>
             </div>
         </div>

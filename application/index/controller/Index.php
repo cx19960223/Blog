@@ -19,13 +19,14 @@ class Index extends Base
 
     public function index()
     {
-        $list = $this->articleModel->paginate(4);
+        //  查询已发布的文章
+        $list = $this->articleModel->where('status = 1')->order('publish_time', 'desc')->paginate(4);
         // 获取分页显示
         $page = $list->render();
         // 模板变量赋值
         $this->assign('list', $list);
         $this->assign('page', $page);
-        // 动画赋值
+        // 动画显示随机选择赋值，
         $this->assign('animated',$this->animated[rand(0,33)]);
         // 渲染模板输出
         return $this->fetch('/index');

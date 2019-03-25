@@ -1,4 +1,4 @@
-<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1553176467;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
+<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1553481783;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,17 +175,8 @@ function jumurl(){
                 <h1 class="animated lightSpeedIn"><?php echo htmlentities($article['title']); ?>&nbsp;<small><?php echo htmlentities($article['author']); ?></small></h1>
             </div>
             <div class="row">
-                <?php if($article['nav'] != ''): ?>
-                    <div class="visible-lg-block col-md-2" id="myScrollspy">
-                        <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
-                            <?php echo htmlentities($article['nav']); ?>
-                        </ul>
-                    </div>
-                <?php else: ?>
-                <?php endif; ?>
-                
                 <div class="col-xs-12 col-md-10">
-                    <?php echo htmlentities($article['content']); ?>
+                    <?php echo html_entity_decode($article['content']); ?>
                 </div>
             </div>
         </div>
