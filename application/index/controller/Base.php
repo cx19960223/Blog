@@ -15,6 +15,14 @@ class Base extends Controller
     protected $model = '';
     // 文件存储路径
     protected $img_src = 'all/img/';
+    // 导航栏信息
+    protected $nav = [
+        'technology' => ['关于技术','linux'],
+        'share' => ['成长分享','envira'],
+        'study' => ['随笔心得','github-alt'],
+        'think' => ['思考总结','github'],
+        'life' => ['业余生活','twitter']
+    ];
 
     public function __construct()
     {
@@ -22,6 +30,7 @@ class Base extends Controller
         $this->validate = new CommonValidate;
         $this->userModel = new UserModel;
         $this->articleModel = new ArticleModel;
+        $this->assign('nav',$this->nav);
     }
    
     /** 

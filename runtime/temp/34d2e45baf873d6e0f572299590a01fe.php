@@ -1,4 +1,4 @@
-<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1553481783;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
+<?php /*a:3:{s:59:"/usr/local/var/www/Blog/application/index/view/article.html";i:1553497612;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1553497021;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,32 +44,13 @@
 							<i class="fa fa-codiepie"></i>首页
 						</a>
 					</li>
+					<?php foreach($nav as $key=>$vo): ?> 
 					<li>
-						<a href="#technology">
-							<i class="fa fa-linux"></i>关于技术
+						<a href="?type=<?php echo htmlentities($key); ?>">
+							<i class="fa fa-<?php echo htmlentities($vo[1]); ?>"></i><?php echo htmlentities($vo[0]); ?>
 						</a>
 					</li>
-					<li>
-						<a href="#share">
-							<i class="fa fa-envira"></i>成长分享
-						</a>
-					</li>
-					<li>
-						<a href="#study">
-							<i class="fa fa-github-alt"></i>随笔心得
-						</a>
-					</li>
-					<li>
-						<a href="#think">
-							<i class="fa fa-github"></i>思考总结
-						</a>
-					</li>
-					<li>
-						<a href="#life">
-							<i class="fa fa-twitter"></i>业余生活
-						</a>
-					</li>
-					<?php if(session('id') == ''): ?>
+					<?php endforeach; if(session('id') == ''): ?>
 						<li>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								<i class="fa fa-user"></i>登录
@@ -165,11 +146,15 @@ function jumurl(){
     <?php if($article != ''): ?>
         <div class="container" style="background-color:white;">
             <!-- 面包屑 [start] -->
-            <ul class="breadcrumb" style="margin-top:10px;">
-                <li class="animated rollIn"><a href="#">Home</a></li>
-                <li class="animated rollIn"><a href="#">2013</a></li>
-                <li class="active animated rollIn">十一月</li>
-            </ul>
+            <?php if($time != ''): ?>
+                <ul class="breadcrumb" style="margin-top:10px;">
+                    <li class="animated rollIn"><a href="/index/index/index?type=<?php echo htmlentities($article['tag']); ?>"><?php echo htmlentities($article['tager']); ?></a></li>
+                    <li class="animated rollIn"><a href="#"><?php echo htmlentities($time['year']); ?></a></li>
+                    <li class="animated rollIn"><a href="#"><?php echo htmlentities($time['month']); ?></a></li>
+                    <li class="active animated rollIn"><?php echo htmlentities($time['day']); ?></li>
+                </ul>
+            <?php endif; ?>
+            
             <!-- 面包屑 [end] -->
             <div class="jumbotron">
                 <h1 class="animated lightSpeedIn"><?php echo htmlentities($article['title']); ?>&nbsp;<small><?php echo htmlentities($article['author']); ?></small></h1>

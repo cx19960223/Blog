@@ -6,7 +6,7 @@
 			{volist name='list' id='list'}
 			<div class="col-md-6">
 				<div class="thumbnail">
-					<img src="{$list.cover}" alt="" class="animated {$animated}">
+					<img src="{$list.cover}" alt="" class="animated {$animated[rand(0,33)]}">
 					<div class="caption">
 						<h3>{$list.title}</h3>
 						<p>{$list.info}</p>

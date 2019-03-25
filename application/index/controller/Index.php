@@ -19,26 +19,44 @@ class Index extends Base
 
     public function index()
     {
-        //  查询已发布的文章
-        $list = $this->articleModel->where('status = 1')->order('publish_time', 'desc')->paginate(4);
+        $where = 'status = 1';//  查询已发布的文章
+
+        // 区分分类下的不同文章[start]
+        if(!empty($_GET['type'])){
+            $where .= " and tag ='".$_GET['type']."'";
+        }
+        // 区分分类下的不同文章[end]
+
+        $list = $this->articleModel->where($where)->order('publish_time', 'desc')->paginate(4);
         // 获取分页显示
         $page = $list->render();
         // 模板变量赋值
         $this->assign('list', $list);
         $this->assign('page', $page);
-        // 动画显示随机选择赋值，
-        $this->assign('animated',$this->animated[rand(0,33)]);
+        // 动画赋值
+        $this->assign('animated',$this->animated);
         // 渲染模板输出
         return $this->fetch('/index');
     }
 
     public function article()
     {
-        $article = '';
+        $article = [];
+        $time = [];
         if(!empty($_GET['id'])){
             $article =  $this->articleModel->where('id',$_GET['id'])->find();
+            // 分割时间，年-月-日[start]
+            $time['year'] = date("Y",$article['publish_time']);
+            $time['month'] = date("M",$article['publish_time']);
+            $time['day'] = date("d",$article['publish_time']);
+            // 分割时间，年-月-日[end]
+
+            // 分类值映射[start]
+            $article['tager'] = $this->nav[$article['tag']][0];
+            // 分类值映射[end]
         }
         $this->assign('article',$article);
+        $this->assign('time',$time);
         return $this->fetch('/article');
     }
 

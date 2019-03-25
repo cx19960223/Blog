@@ -30,11 +30,9 @@
                     <div class="col-sm-10">
                         <select name="tag" id="tag" class="form-control">
                             <option value=""></option>
-                            <option value="technology">关于技术</option>
-                            <option value="share">成长分享</option>
-                            <option value="study">随笔心得</option>
-                            <option value="think">思考总结</option>
-                            <option value="life">业余生活</option>
+                            {foreach $nav as $key=>$vo } 
+                            <option value="{$key}">{$vo[0]}</option>
+                            {/foreach}
                         </select>
                     </div>
                 </div>

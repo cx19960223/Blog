@@ -5,11 +5,14 @@
     {if $article != ''}
         <div class="container" style="background-color:white;">
             <!-- 面包屑 [start] -->
-            <ul class="breadcrumb" style="margin-top:10px;">
-                <li class="animated rollIn"><a href="#">Home</a></li>
-                <li class="animated rollIn"><a href="#">2013</a></li>
-                <li class="active animated rollIn">十一月</li>
-            </ul>
+            {if $time != ''}
+                <ul class="breadcrumb" style="margin-top:10px;">
+                    <li class="animated rollIn"><a href="/index/index/index?type={$article.tag}">{$article.tager}</a></li>
+                    <li class="animated rollIn"><a href="#">{$time.year}</a></li>
+                    <li class="animated rollIn"><a href="#">{$time.month}</a></li>
+                    <li class="active animated rollIn">{$time.day}</li>
+                </ul>
+            {/if}
             <!-- 面包屑 [end] -->
             <div class="jumbotron">
                 <h1 class="animated lightSpeedIn">{$article.title}&nbsp;<small>{$article.author}</small></h1>

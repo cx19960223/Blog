@@ -1,4 +1,4 @@
-<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1553175351;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1552988340;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
+<?php /*a:3:{s:57:"/usr/local/var/www/Blog/application/index/view/index.html";i:1553496742;s:63:"/usr/local/var/www/Blog/application/index/view/base/header.html";i:1553497743;s:62:"/usr/local/var/www/Blog/application/index/view/base/login.html";i:1552985371;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,32 +44,13 @@
 							<i class="fa fa-codiepie"></i>首页
 						</a>
 					</li>
+					<?php foreach($nav as $key=>$vo): ?> 
 					<li>
-						<a href="#technology">
-							<i class="fa fa-linux"></i>关于技术
+						<a href="/index/index/index?type=<?php echo htmlentities($key); ?>">
+							<i class="fa fa-<?php echo htmlentities($vo[1]); ?>"></i><?php echo htmlentities($vo[0]); ?>
 						</a>
 					</li>
-					<li>
-						<a href="#share">
-							<i class="fa fa-envira"></i>成长分享
-						</a>
-					</li>
-					<li>
-						<a href="#study">
-							<i class="fa fa-github-alt"></i>随笔心得
-						</a>
-					</li>
-					<li>
-						<a href="#think">
-							<i class="fa fa-github"></i>思考总结
-						</a>
-					</li>
-					<li>
-						<a href="#life">
-							<i class="fa fa-twitter"></i>业余生活
-						</a>
-					</li>
-					<?php if(session('id') == ''): ?>
+					<?php endforeach; if(session('id') == ''): ?>
 						<li>
 							<a href="#" data-toggle="modal" data-target="#myModal">
 								<i class="fa fa-user"></i>登录
@@ -166,7 +147,7 @@ function jumurl(){
 			<?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?>
 			<div class="col-md-6">
 				<div class="thumbnail">
-					<img src="<?php echo htmlentities($list['cover']); ?>" alt="" class="animated <?php echo htmlentities($animated); ?>">
+					<img src="<?php echo htmlentities($list['cover']); ?>" alt="" class="animated <?php echo htmlentities($animated[rand(0,33)]); ?>">
 					<div class="caption">
 						<h3><?php echo htmlentities($list['title']); ?></h3>
 						<p><?php echo htmlentities($list['info']); ?></p>
