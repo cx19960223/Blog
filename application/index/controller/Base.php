@@ -40,7 +40,7 @@ class Base extends Controller
     */
     public function uploadImg($file = ''){
         // tp5.1默认存储文件格式为 当前日期为子目录，以微秒时间的md5为文件名
-        $info = $file->validate(['size'=>1048576,'ext'=>'jpg,png,gif,jpeg'])->move($this->img_src);
+        $info = $file->validate(['ext'=>'jpg,png,gif,jpeg'])->move($this->img_src);
         if($info){
             // 成功上传后 返回图片路径
             return '/'.$this->img_src.$info->getSaveName();
