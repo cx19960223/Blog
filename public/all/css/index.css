@@ -7,3 +7,8 @@
 .navbar-nav hr{
 	margin: 0;padding: 0;position: relative;left: 3%;width:80%;
 }
+
+/* 去掉缩略图的边框 */
+.thumbnail{
+    border:0px solid #ddd;
+}

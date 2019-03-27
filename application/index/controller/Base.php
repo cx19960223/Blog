@@ -15,6 +15,15 @@ class Base extends Controller
     protected $model = '';
     // 文件存储路径
     protected $img_src = 'all/img/';
+    // animated css载入动画
+    public $animated = 
+    [
+        'bounce','flash','pulse','shake','swing','tada','wobble','bounceIn',//0-7
+        'bounceInDown','bounceInLeft','bounceInRight','bounceInUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft',//8-15
+        'fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','flip','flipInX','flipInY',//16-23
+        'lightSpeedIn','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight',//24-29
+        'slideInDown','slideInLeft','slideInRight','rollIn'//30-33
+    ];
     // 导航栏信息
     protected $nav = [
         'technology' => ['关于技术','linux'],
@@ -22,6 +31,10 @@ class Base extends Controller
         'study' => ['随笔心得','github-alt'],
         'think' => ['思考总结','github'],
         'life' => ['业余生活','twitter']
+    ];
+    // 文章作者
+    protected $author = [
+        'chenxin' => '菜穗子'
     ];
 
     public function __construct()
@@ -31,6 +44,8 @@ class Base extends Controller
         $this->userModel = new UserModel;
         $this->articleModel = new ArticleModel;
         $this->assign('nav',$this->nav);
+        // 动画赋值
+        $this->assign('animated',$this->animated);
     }
    
     /** 

@@ -32,8 +32,3 @@ ul.nav-tabs li:last-child a{
 ul.nav-tabs.affix{
     top: 30px; /* Set the top position of pinned element */
 }
-
-/* 去掉缩略图的边框 */
-.thumbnail{
-    border:0px solid #ddd;
-}

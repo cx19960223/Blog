@@ -7,16 +7,6 @@ class Index extends Base
 {
     public $userModel = '';
 
-    // animated css载入动画
-    public $animated = 
-    [
-        'bounce','flash','pulse','shake','swing','tada','wobble','bounceIn',//0-7
-        'bounceInDown','bounceInLeft','bounceInRight','bounceInUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft',//8-15
-        'fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','flip','flipInX','flipInY',//16-23
-        'lightSpeedIn','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight',//24-29
-        'slideInDown','slideInLeft','slideInRight','rollIn'//30-33
-    ];
-
     public function index()
     {
         $where = 'status = 1';//  查询已发布的文章
@@ -33,12 +23,11 @@ class Index extends Base
         // 模板变量赋值
         $this->assign('list', $list);
         $this->assign('page', $page);
-        // 动画赋值
-        $this->assign('animated',$this->animated);
         // 渲染模板输出
         return $this->fetch('/index');
     }
 
+    // 文章详情
     public function article()
     {
         $article = [];
@@ -53,6 +42,7 @@ class Index extends Base
 
             // 分类值映射[start]
             $article['tager'] = $this->nav[$article['tag']][0];
+            $article['author'] = $this->author[$article['author']];
             // 分类值映射[end]
         }
         $this->assign('article',$article);
@@ -64,6 +54,10 @@ class Index extends Base
     public function publish()
     {
         if(!empty( session('name') )){
+            //和编辑兼容，不能删[start]
+            $info = ['id'=>'','title' => '','cover' => '','info' => '','tag' => '','content' => '','status' => ''];
+            $this->assign('info',$info);
+            //和编辑兼容，不能删[end]
             return $this->fetch('/publish');
         }else{
             return $this->login();
@@ -100,27 +94,50 @@ class Index extends Base
     // 保存文章
     public function saveArticle()
     {
-        if(!empty($_FILES['cover']['name'])){
-            $file = request()->file('cover');// 获取表单上传封面
-            $cover_name = $this->uploadImg($file);//上传图片到本地，上传成功返回图片名称
-            $_POST['cover'] = $cover_name;
+        if(!empty($_POST['id'])){//更新
+            if(!empty($_FILES['cover']['name'])){
+                $file = request()->file('cover');// 获取表单上传封面
+                $cover_name = $this->uploadImg($file);//上传图片到本地，上传成功返回图片名称
+                $_POST['cover'] = $cover_name;
+            }else{
+                unset($_POST['cover']);//若没有则不更新以前的图片
+            }
+            Db::startTrans();
+            try {
+                $this->articleModel->allowField(true)->save($_POST,['id' => $_POST['id']]);
+                // 提交事务
+                Db::commit();
+                return "<script>window.location.href='index';</script>";
+            } catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+                return "<script>alert('事务回滚！');window.location.href='publish';</script>";
+            }
         }else{
-            $_POST['cover'] = '';
-        }
-        $_POST['save_time'] = time();//保存时间
-        $_POST['publish_time'] = time();//当前是直接发布，所以发布时间 = 保存时间
-        $_POST['author'] = session('name');//获取发布者的名称
-        // 启动事务
-        Db::startTrans();
-        try {
-            $this->articleModel->saveArticle($_POST);
-            // 提交事务
-            Db::commit();
-            return "<script>window.location.href='index';</script>";
-        } catch (\Exception $e) {
-            // 回滚事务
-            Db::rollback();
-            return "<script>alert('事务回滚！');window.location.href='publish';</script>";
+            //新增
+            unset($_POST['id']);
+            if(!empty($_FILES['cover']['name'])){
+                $file = request()->file('cover');// 获取表单上传封面
+                $cover_name = $this->uploadImg($file);//上传图片到本地，上传成功返回图片名称
+                $_POST['cover'] = $cover_name;
+            }else{
+                $_POST['cover'] = '';
+            }
+            $_POST['save_time'] = time();//保存时间
+            $_POST['publish_time'] = time();//当前是直接发布，所以发布时间 = 保存时间
+            $_POST['author'] = session('name');//获取发布者的名称
+            // 启动事务
+            Db::startTrans();
+            try {
+                $this->articleModel->saveArticle($_POST);
+                // 提交事务
+                Db::commit();
+                return "<script>window.location.href='index';</script>";
+            } catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+                return "<script>alert('事务回滚！');window.location.href='publish';</script>";
+            }
         }
     }
 

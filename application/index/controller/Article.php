@@ -71,4 +71,16 @@ class Article extends Base
         }
     }
 
+    /**
+     * 编辑文章
+     * @param id 文章id
+     */
+    public function edit()
+    {
+        $id = $_GET['id'];
+        $info = $this->articleModel->where("id = $id")->find();
+        $this->assign('info',$info);
+        return $this->fetch("/publish");
+    }
+
 }
