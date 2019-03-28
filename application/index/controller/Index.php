@@ -99,6 +99,11 @@ class Index extends Base
                 $file = request()->file('cover');// 获取表单上传封面
                 $cover_name = $this->uploadImg($file);//上传图片到本地，上传成功返回图片名称
                 $_POST['cover'] = $cover_name;
+                // 删除之前的图片
+                $result = $this->articleModel->where('id='.$_POST['id'])->field('cover')->find();
+                if(!empty($result['cover'])){
+                    unlink(ltrim($result['cover'] , '/'));
+                }
             }else{
                 unset($_POST['cover']);//若没有则不更新以前的图片
             }
