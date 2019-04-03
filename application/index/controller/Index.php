@@ -112,7 +112,7 @@ class Index extends Base
                 $this->articleModel->allowField(true)->save($_POST,['id' => $_POST['id']]);
                 // 提交事务
                 Db::commit();
-                return "<script>window.location.href='index';</script>";
+                return "<script>window.location.href='/index/article/edit?id=".$_POST['id']."';</script>";
             } catch (\Exception $e) {
                 // 回滚事务
                 Db::rollback();
@@ -120,7 +120,7 @@ class Index extends Base
             }
         }else{
             //新增
-            unset($_POST['id']);
+            unset($_POST['id']);//编辑时才会用的id，新增时这个id为空
             if(!empty($_FILES['cover']['name'])){
                 $file = request()->file('cover');// 获取表单上传封面
                 $cover_name = $this->uploadImg($file);//上传图片到本地，上传成功返回图片名称
@@ -134,10 +134,10 @@ class Index extends Base
             // 启动事务
             Db::startTrans();
             try {
-                $this->articleModel->saveArticle($_POST);
+                $id = Db::name('article')->insertGetId($_POST);
                 // 提交事务
                 Db::commit();
-                return "<script>window.location.href='index';</script>";
+                return "<script>window.location.href='/index/article/edit?id=".$id."';</script>";
             } catch (\Exception $e) {
                 // 回滚事务
                 Db::rollback();
