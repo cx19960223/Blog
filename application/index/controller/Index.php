@@ -49,9 +49,9 @@ class Index extends Base
         $article = [];
         $time = [];
         if(!empty($_GET['id'])){
-            if(!empty(cache('article')) && !empty(cache('time'))) {
-                $article = cache('article');
-                $time = cache('time');
+            if( !empty( cache('article_'.$_GET['id']) ) && !empty( cache('time_'.$_GET['id']) ) ) {
+                $article = cache('article_'.$_GET['id']);
+                $time = cache('time_'.$_GET['id']);
             }else{
                 $article =  $this->articleModel->where('id',$_GET['id'])->find();
                 // 分割时间，年-月-日[start]
@@ -64,8 +64,8 @@ class Index extends Base
                 $article['tager'] = $this->nav[$article['tag']][0];
                 $article['author'] = $this->author[$article['author']];
                 // 分类值映射[end]
-                cache('article', $article, 0);
-                cache('time', $time, 0);
+                cache('article_'.$_GET['id'], $article, 0);
+                cache('time_'.$_GET['id'], $time, 0);
             }
         }
         $this->assign('article',$article);
