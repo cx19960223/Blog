@@ -118,8 +118,8 @@ return [
     'var_pjax'               => '_pjax',
     // 是否开启请求缓存 true自动缓存 支持设置请求缓存规则
     'request_cache'          => true,
-    // 请求缓存有效期【一天】
-    'request_cache_expire'   => 86400,
+    // 请求缓存有效期【永久缓存】
+    'request_cache_expire'   => 0,
     // 全局请求缓存排除规则
     'request_cache_except'   => [],
     // 是否开启路由缓存
