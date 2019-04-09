@@ -2,10 +2,19 @@
 namespace app\index\controller;
 use think\facade\Session;
 use think\Db;
+use think\facade\Cache;
 
 class Index extends Base
 {
     public $userModel = '';
+
+    public $cache = '';
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->cache = Cache::init();
+    }
 
     public function index()
     {
@@ -17,9 +26,16 @@ class Index extends Base
         }
         // 区分分类下的不同文章[end]
 
-        $list = $this->articleModel->where($where)->order('publish_time', 'desc')->paginate(4);
-        // 获取分页显示
-        $page = $list->render();
+        if(!empty(cache('list')) && !empty(cache('page'))) {
+            $list = cache('list');
+            $page = cache('page');
+        }else{
+            $list = $this->articleModel->where($where)->order('publish_time', 'desc')->paginate(4);
+            // 获取分页显示
+            $page = $list->render();
+            cache('liat', $list, 0);
+            cache('page', $page, 0);
+        }
         // 模板变量赋值
         $this->assign('list', $list);
         $this->assign('page', $page);
@@ -33,17 +49,24 @@ class Index extends Base
         $article = [];
         $time = [];
         if(!empty($_GET['id'])){
-            $article =  $this->articleModel->where('id',$_GET['id'])->find();
-            // 分割时间，年-月-日[start]
-            $time['year'] = date("Y",$article['publish_time']);
-            $time['month'] = date("M",$article['publish_time']);
-            $time['day'] = date("d",$article['publish_time']);
-            // 分割时间，年-月-日[end]
+            if(!empty(cache('article')) && !empty(cache('time'))) {
+                $article = cache('article');
+                $time = cache('time');
+            }else{
+                $article =  $this->articleModel->where('id',$_GET['id'])->find();
+                // 分割时间，年-月-日[start]
+                $time['year'] = date("Y",$article['publish_time']);
+                $time['month'] = date("M",$article['publish_time']);
+                $time['day'] = date("d",$article['publish_time']);
+                // 分割时间，年-月-日[end]
 
-            // 分类值映射[start]
-            $article['tager'] = $this->nav[$article['tag']][0];
-            $article['author'] = $this->author[$article['author']];
-            // 分类值映射[end]
+                // 分类值映射[start]
+                $article['tager'] = $this->nav[$article['tag']][0];
+                $article['author'] = $this->author[$article['author']];
+                // 分类值映射[end]
+                cache('article', $article, 0);
+                cache('time', $time, 0);
+            }
         }
         $this->assign('article',$article);
         $this->assign('time',$time);
