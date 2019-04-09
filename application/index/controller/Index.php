@@ -135,6 +135,8 @@ class Index extends Base
                 $this->articleModel->allowField(true)->save($_POST,['id' => $_POST['id']]);
                 // 提交事务
                 Db::commit();
+                // 删除缓存数据
+                cache('article_'.$_POST['id'], NULL);
                 return "<script>window.location.href='/index/article/edit?id=".$_POST['id']."';</script>";
             } catch (\Exception $e) {
                 // 回滚事务
