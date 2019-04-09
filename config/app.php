@@ -117,9 +117,9 @@ return [
     // 表单pjax伪装变量
     'var_pjax'               => '_pjax',
     // 是否开启请求缓存 true自动缓存 支持设置请求缓存规则
-    'request_cache'          => true,
+    'request_cache'          => false,
     // 请求缓存有效期【永久缓存】
-    'request_cache_expire'   => 0,
+    'request_cache_expire'   => '',
     // 全局请求缓存排除规则
     'request_cache_except'   => [],
     // 是否开启路由缓存
