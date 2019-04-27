@@ -33,7 +33,7 @@ class Index extends Base
             $list = $this->articleModel->where($where)->order('publish_time', 'desc')->paginate(4);
             // 获取分页显示
             $page = $list->render();
-            cache('liat', $list, 0);
+            cache('list', $list, 0);
             cache('page', $page, 0);
         }
         // 模板变量赋值
