@@ -3,6 +3,7 @@ namespace app\index\controller;
 use think\facade\Session;
 use think\Db;
 use think\facade\Cache;
+use think\Paginator;
 
 class Index extends Base
 {
@@ -19,23 +20,19 @@ class Index extends Base
     public function index()
     {
         $where = 'status = 1';//  查询已发布的文章
+        $type = []; //分页类型
 
         // 区分分类下的不同文章[start]
         if(!empty($_GET['type'])){
             $where .= " and tag ='".$_GET['type']."'";
+            $type = ['type' => $_GET['type'] ];//参考命名空间的think\Paginator,主要是用户不同的分类下点击下一页时链接对应到该分类下
         }
         // 区分分类下的不同文章[end]
 
-        if(!empty(cache('list')) && !empty(cache('page'))) {
-            $list = cache('list');
-            $page = cache('page');
-        }else{
-            $list = $this->articleModel->where($where)->order('publish_time', 'desc')->paginate(4);
-            // 获取分页显示
-            $page = $list->render();
-            cache('list', $list, 0);
-            cache('page', $page, 0);
-        }
+        // 如果存在分类则按照分类分页
+        $list = $this->articleModel->where($where)->order('publish_time', 'desc')->paginate(4,true,['query' => $type]);
+        // 获取分页显示
+        $page = $list->render();
         // 模板变量赋值
         $this->assign('list', $list);
         $this->assign('page', $page);
