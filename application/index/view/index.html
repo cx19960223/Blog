@@ -22,6 +22,15 @@
 				</div>
 			</div>
 			{/volist}
+
+			{if ( $list_count <= 2 )}
+			<style>
+				footer{
+					position: fixed;
+					bottom: 0;
+				}
+			</style>
+			{/if}
 		</div>
 	</div>
 	<!-- content[end] -->
@@ -35,5 +44,6 @@
 		</div>
 	</div>
 	<!-- page[end] -->
+{include file="base/footer" /}
 </body>
 </html>

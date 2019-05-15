@@ -33,8 +33,12 @@ class Index extends Base
         $list = $this->articleModel->where($where)->order('publish_time', 'desc')->paginate(4,true,['query' => $type]);
         // 获取分页显示
         $page = $list->render();
+        // 获取查询的数量
+        $list_count = count($list);
+
         // 模板变量赋值
         $this->assign('list', $list);
+        $this->assign('list_count', $list_count);
         $this->assign('page', $page);
         // 渲染模板输出
         return $this->fetch('/index');
