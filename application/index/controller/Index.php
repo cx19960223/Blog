@@ -56,9 +56,12 @@ class Index extends Base
             }else{
                 $article =  $this->articleModel->where('id',$_GET['id'])->find();
                 // 分割时间，年-月-日[start]
-                $time['year'] = date("Y",$article['publish_time']);
-                $time['month'] = date("M",$article['publish_time']);
-                $time['day'] = date("d",$article['publish_time']);
+                $times = explode( '-', date("Y-M-d", $article['publish_time']) );
+                $time = [
+                    'year' => $times[0],
+                    'month' => $times[1],
+                    'day' => $times[2]
+                ];
                 // 分割时间，年-月-日[end]
 
                 // 分类值映射[start]
