@@ -26,11 +26,11 @@ class Base extends Controller
     ];
     // 导航栏信息
     protected $nav = [
-        'technology' => ['关于技术','linux'],
-        'share' => ['成长分享','envira'],
-        'study' => ['随笔心得','github-alt'],
+        'technology' => ['关于技术','yelp'],
+        'share' => ['成长分享','pagelines'],
+        'study' => ['随笔心得','paw'],
         'think' => ['思考总结','github'],
-        'life' => ['业余生活','twitter']
+        'life' => ['业余生活','spinner']
     ];
     // 文章作者
     protected $author = [
