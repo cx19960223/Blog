@@ -17,7 +17,8 @@
                             <hr>
                             {foreach $vo['articles'] as $k => $val}
                             <p>
-                                <a href="/index/index/article?id={$val['id']}">{$val.title}</a> 「{$val.publish_time|date='m-d'}」
+                                <a href="/index/index/article?id={$val['id']}">{$val.title}</a> 
+                                <small class="text-muted">{$val.publish_time|date='m-d'}</small>
                             </p>
                             {/foreach}
                         {/if}
