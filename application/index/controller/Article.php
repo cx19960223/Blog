@@ -180,6 +180,7 @@ class Article extends Base
             $y_start = strtotime($y."-01-01 00:00:00");
             $y_end = strtotime($y."-12-31 23:59:59");
             $year_article = $this->articleModel->where('publish_time >= '.$y_start.' and publish_time <= '.$y_end.$where)
+            ->order('publish_time desc')
             ->field('id,title,publish_time')
             ->select();
             // 以年份为时间节点查询文章[end]
