@@ -1,0 +1,91 @@
+{include file="base/header" /}
+{include file="base/login" /}
+    <div class="container">
+        <div class="row">
+            <div class="left col-xs-12 col-sm-8 animated {$animated[rand(0,33)]}">
+                <p>
+                    <ul class="breadcrumb">
+                        <li><a href="#">分类</a></li>
+                        <li><a href="#">{$info.name}</a></li>
+                        <li class="active">共 {$info.article_count} 篇文章</li>
+                    </ul>
+                </p>
+                <section>
+                    {foreach $articles as $key => $vo}
+                        {if $vo.count != 0}
+                            <h3>{$vo['year']}</h3>
+                            <hr>
+                            {foreach $vo['articles'] as $k => $val}
+                            <p>
+                                <a href="/index/index/article?id={$val['id']}">{$val.title}</a> 「{$val.publish_time|date='m-d'}」
+                            </p>
+                            {/foreach}
+                        {/if}
+                    {/foreach}
+                    <div style="height: 50px;"></div>
+                </section>
+            </div>
+        
+            <div class="right col-md-3 col-sm-offset-1 col-xs-12 animated {$animated[rand(0,33)]}">
+                <section>
+                    <h3>分类</h3>
+                    <hr>
+                    <p>
+                        <a href="/index/article/articleList">
+                            <i class="fa fa-1"></i> 全部文章 <small class="text-muted">( {$nav_typeall} 篇 )</small>
+                        </a>
+                    </p>
+                    {foreach $nav as $key=>$vo } 
+					<p>
+						<a href="/index/article/articleList?tag={$key}&type=class">
+							<i class="fa fa-{$vo[1]}"></i> {$vo[0]} <small class="text-muted">( {$nav_type[$key]} 篇 )</small>
+						</a>
+					</p>
+                    {/foreach}
+                    <hr>
+
+                    <h3>年份</h3>
+                    <hr>
+                    {foreach $year_count as $key => $vo}
+                        {if $vo.count != 0}
+                            <p>
+                                    <a href="/index/article/articleList?tag={$vo.year}&type=year">
+                                    <i class="fa fa-cloud {$color[rand(0,4)]}"></i> {$vo.year}<small class="text-muted"> ( {$vo.count} 篇)</small>
+                                </a>
+                            </p>
+                        {/if}
+                    {/foreach}
+                    <hr>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    .left{
+        background-color: white;
+        margin-bottom: 5%;
+    }
+    
+    .left section, .right section{
+        text-align: center;
+    }
+
+    .left section hr{
+        width: 60%;
+    }
+
+    section a{
+        color:black;
+    }
+
+    .right{
+        background-color:white;
+    }
+
+    .right section p{
+        margin-bottom: 15px;
+    }
+</style>

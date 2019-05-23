@@ -24,6 +24,12 @@ class Base extends Controller
         'lightSpeedIn','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight',//24-29
         'slideInDown','slideInLeft','slideInRight','rollIn'//30-33
     ];
+    // 字体颜色
+    public $color = 
+    [
+        'text-primary','text-success','text-info','text-warning','text-danger'
+    ];
+
     // 导航栏信息
     protected $nav = [
         'technology' => ['关于技术','yelp'],
@@ -46,6 +52,8 @@ class Base extends Controller
         $this->assign('nav',$this->nav);
         // 动画赋值
         $this->assign('animated',$this->animated);
+        // 字体颜色赋值
+        $this->assign('color', $this->color);
     }
    
     /** 
