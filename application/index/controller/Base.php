@@ -33,7 +33,7 @@ class Base extends Controller
     // 导航栏信息
     protected $nav = [
         'technology' => ['关于技术','yelp'],
-        'share' => ['成长分享','pagelines'],
+        'share' => ['读书笔记','pagelines'],
         'study' => ['随笔心得','paw'],
         'think' => ['思考总结','github'],
         'life' => ['业余生活','spinner']
