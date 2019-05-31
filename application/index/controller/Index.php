@@ -66,7 +66,10 @@ class Index extends Base
 
                 // 分类值映射[start]
                 $article['tager'] = $this->nav[$article['tag']][0];
-                $article['author'] = $this->author[$article['author']];
+                $article['author'] = $article['author'];
+                if( isset( $this->author[$article['author']] ) ){
+                    $article['author'] = $this->author[$article['author']];
+                }
                 // 分类值映射[end]
                 cache('article_'.$_GET['id'], $article, 0);
                 cache('time_'.$_GET['id'], $time, 0);
@@ -82,7 +85,7 @@ class Index extends Base
     {
         if(!empty( session('name') )){
             //和编辑兼容，不能删[start]
-            $info = ['id'=>'','title' => '','cover' => '','info' => '','tag' => '','content' => '','status' => ''];
+            $info = ['id'=>'','title' => '','author' => '','cover' => '','info' => '','tag' => '','content' => '','status' => ''];
             $this->assign('info',$info);
             //和编辑兼容，不能删[end]
             return $this->fetch('/publish');
@@ -159,7 +162,7 @@ class Index extends Base
             }
             $_POST['save_time'] = time();//保存时间
             $_POST['publish_time'] = time();//当前是直接发布，所以发布时间 = 保存时间
-            $_POST['author'] = session('name');//获取发布者的名称
+            $_POST['author'] = $_POST['author'] ?: session('name');//获取发布者的名称
             // 启动事务
             Db::startTrans();
             try {
