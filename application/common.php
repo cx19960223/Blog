@@ -35,3 +35,25 @@ function deldir($path){
         }
     }
 }
+
+/**
+ * 获得访问设备
+ * @return int
+ */
+function user_agent()
+{
+    $useragent = strtolower($_SERVER["HTTP_USER_AGENT"]);
+    $agent = array(
+        'wechat' => 'micromessenger',
+        'ipad' => 'ipad',
+        'iphone' => 'iphone',
+        'android' => 'android',
+        'windows' => 'windows nt'
+    );
+    foreach ($agent as $k => $v) {
+        if (stripos($useragent, $v) !== false) {
+            return $k;
+        }
+    }
+    return 'unknown';
+}
