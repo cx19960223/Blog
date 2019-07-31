@@ -7,7 +7,7 @@ use think\Paginator;
 
 class Index extends Base
 {
-    public $userModel = '1';
+    public $userModel = '';
 
     public $cache = '';
 
