@@ -40,7 +40,7 @@ class Base extends Controller
     ];
     // 文章作者
     protected $author = [
-        'chenxin' => '菜穗子'
+        'chenxin' => '派大星'
     ];
 
     public function __construct()
